@@ -1,4 +1,4 @@
-package kbs.monitor.view;
+package kbslt.display.view;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -6,7 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import kbs.monitor.model.SysBeanFX;
+import kbslt.monitor.model.SysBeanFX;
 
 /**
  * @author Jean-Pierre Alonso.

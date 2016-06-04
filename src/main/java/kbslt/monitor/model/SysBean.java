@@ -1,4 +1,4 @@
-package kbs.monitor.model;
+package kbslt.monitor.model;
 
 /**
  * @author Jean-Pierre Alonso.
@@ -16,7 +16,7 @@ public class SysBean {
     private long cpuTime;           // the CPU time used by the process on which the Java virtual machine is running in nanoseconds.
     private int availableProcessors;
 
-    public static long MB = 1024*1024;
+    static long MB = 1024*1024;
     public static long NANO = 1000000;
 
     public void printState() {

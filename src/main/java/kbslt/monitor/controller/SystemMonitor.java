@@ -1,7 +1,7 @@
-package kbs.monitor.controller;
+package kbslt.monitor.controller;
 
 import com.sun.management.OperatingSystemMXBean;
-import kbs.monitor.model.SysBean;
+import kbslt.monitor.model.SysBean;
 
 import java.lang.management.ManagementFactory;
 

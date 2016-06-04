@@ -1,4 +1,4 @@
-package kbs.monitor.model;
+package kbslt.monitor.model;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

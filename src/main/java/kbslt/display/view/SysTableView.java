@@ -1,11 +1,11 @@
-package kbs.monitor.view;
+package kbslt.display.view;
 
 import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import kbs.monitor.model.SysBeanFX;
+import kbslt.monitor.model.SysBeanFX;
 
 /**
  * @author Jean-Pierre Alonso.
@@ -16,6 +16,7 @@ public class SysTableView {
 
     public SysTableView() {
         tableView.setEditable(false);
+        tableView.setVisible(true);
         ObservableList<TableColumn<SysBeanFX, ?>> columns = tableView.getColumns();
 //        ObservableList<SysBeanFX> lines = tableView.getItems();
 
