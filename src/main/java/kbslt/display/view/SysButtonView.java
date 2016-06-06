@@ -3,6 +3,7 @@ package kbslt.display.view;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import kbslt.monitor.IProtoMonitor;
 
@@ -38,9 +39,9 @@ public class SysButtonView {
         hbox.getChildren().add(start_btn);
         // Start monitor button
         if (isChart)
-            toggle_btn.setText("Chart");
-        else
             toggle_btn.setText("Table");
+        else
+            toggle_btn.setText("Chart");
         hbox.getChildren().add(toggle_btn);
         // Exit button
         exit_btn.setText("Exit");
@@ -51,16 +52,23 @@ public class SysButtonView {
         stop_btn.setOnAction((actionEvent)  ->  tm.stop());
         start_btn.setOnAction((actionEvent) ->  tm.start(true));
         toggle_btn.setOnAction((actionEvent) ->  {
+            BorderPane bpane;
             if (isChart) {
                 toggle_btn.setText("Chart");
+                bpane = (BorderPane) scv.getLineChart().getParent();
+                bpane.getChildren().remove(scv.getLineChart());
+                bpane.setCenter(stv.getTableView());
                 stv.getTableView().setVisible(true);
                 scv.getLineChart().setVisible(false);
                 isChart = false;
             } else {
                 toggle_btn.setText("Table");
+                bpane = (BorderPane) stv.getTableView().getParent();
+                bpane.getChildren().remove(stv.getTableView());
+                bpane.setCenter(scv.getLineChart());
                 stv.getTableView().setVisible(false);
                 scv.getLineChart().setVisible(true);
-                isChart =true;
+                isChart = true;
             }
         });
         exit_btn.setOnAction((actionEvent)  ->  System.exit(0));
