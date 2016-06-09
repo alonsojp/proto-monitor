@@ -9,13 +9,22 @@ import kbslt.monitor.model.SysBean;
 import kbslt.monitor.model.SysBeanFX;
 
 /**
+ * It should be only one monitor in the system, so it is designed as a singleton.
  * @author Jean-Pierre Alonso.
  */
 public class ProtoMonitor implements IProtoMonitor {
+    private static final ProtoMonitor instance = new ProtoMonitor();   // singleton
+
     private Thread th;
     private ObjectProperty<SysBeanFX> sbfx = new SimpleObjectProperty<>(new SysBeanFX());
     private boolean cancelled;
     private boolean mode_console;
+
+    private ProtoMonitor() {}
+
+    public static ProtoMonitor getInstance() {
+        return instance;
+    }
 
     @Override
     public void start (boolean mode_console) {
@@ -57,6 +66,7 @@ public class ProtoMonitor implements IProtoMonitor {
                 Platform.runLater(() -> sbfx.set(new SysBeanFX(sb)));
                 try {
                     Thread.sleep(890);
+                    // ou setTimer ... à étudier
                 } catch (InterruptedException interrupted) {
                     if (cancelled) {
                         System.out.println("Cancelled");

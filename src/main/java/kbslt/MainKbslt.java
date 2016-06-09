@@ -21,7 +21,7 @@ import kbslt.display.view.SysTableView;
  */
 public class MainKbslt extends Application {
     private Stage primaryStage;
-    private IProtoMonitor tm = new ProtoMonitor();
+    private IProtoMonitor tm = ProtoMonitor.getInstance();
     private Display display = new Display(tm);
 
     public static void main(String[] args) {

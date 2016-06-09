@@ -11,10 +11,11 @@ import kbslt.monitor.model.SysBeanFX;
  * @author Jean-Pierre Alonso.
  */
 public class SysTableView {
-    private TableView<SysBeanFX> tableView = new TableView<>();
-    private Observable selectedItem = tableView.getSelectionModel().selectedItemProperty();
+    private final TableView<SysBeanFX> tableView;
+    private Observable selectedItem;
 
     public SysTableView() {
+        tableView = new TableView<>();
         tableView.setEditable(false);
         tableView.setVisible(true);
         ObservableList<TableColumn<SysBeanFX, ?>> columns = tableView.getColumns();
@@ -37,6 +38,7 @@ public class SysTableView {
                     new PropertyValueFactory<>(fieldName));
             System.out.printf("Colonne : %s, champ : %s", column.getText(), fieldName).println();
         }
+        selectedItem = tableView.getSelectionModel().selectedItemProperty();
     }
 
     public TableView<SysBeanFX> getTableView() {
