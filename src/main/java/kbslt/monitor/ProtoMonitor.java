@@ -54,11 +54,11 @@ public class ProtoMonitor implements IProtoMonitor {
             SystemMonitor sysMon = new SystemMonitor();
 
             while (!cancelled) {
-                System.out.println(th.getState());
                 SysBean sb = sysMon.systemSnapshot();
                 current = System.nanoTime();
                 // Display results on the console (optional)
                 if (mode_console) {
+                    System.out.println(th.getState());
                     sb.printState();
                     System.out.printf("elapsed time : %d ms", (current - start) / SysBean.NANO).println();
                 }
