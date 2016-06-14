@@ -32,23 +32,36 @@ public class DriveImpl implements Drive {
     @Override
     public void start(boolean mode_console) {
         this.mode_console = mode_console;
-        setRequestedConnections(1000);
-        setStartedConnections(0);
+//        setRequestedConnections(1000);
+//        setStartedConnections(0);
         Timer t = new Timer("Drive timer");
-        t.schedule(TestRequested,0,100);
+        t.schedule(TestRequested,0,10);
     }
 
     private TimerTask TestRequested = new TimerTask() {
         @Override
         public void run() {
             if (getStartedConnections() < getRequestedConnections()) {
+                // We must start new connections
                 Connexion cnx = new ConnexionMock();
                 connexionList.add(cnx);
 //                cnx.executeCommand(Command.OPEN);
-                setStartedConnections(getStartedConnections()+1);
-                if (mode_console)
-                    System.out.printf("started connections : %d (time = %d)", getStartedConnections(),System.nanoTime()).println();
+                try {
+                    startedConnections.add(1);
+//                    setStartedConnections(getStartedConnections()+1);
+                } catch (Exception e){
+                        System.out.printf("Exception / started connections : %d / %d (time = %d)",
+                                getStartedConnections(),
+                                getRequestedConnections(),
+                                System.nanoTime()/1000000
+                        ).println();
+                }
+            } else {
+                // We must close existing connections
+                connexionList.remove(0);
             }
+            if (mode_console)
+                System.out.printf("started connections : %d / %d (time = %d)", getStartedConnections(), getRequestedConnections(),System.nanoTime()).println();
         }
     };
 
@@ -60,11 +73,6 @@ public class DriveImpl implements Drive {
     @Override
     public IntegerProperty requestedConnectionsProperty() {
         return requestedConnections;
-    }
-
-    @Override
-    public void setRequestedConnections(int r) {
-        requestedConnections.set(r);
     }
 
     @Override
