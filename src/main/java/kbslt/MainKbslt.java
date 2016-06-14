@@ -16,7 +16,7 @@ import kbslt.monitor.ProtoMonitor;
 public class MainKbslt extends Application {
     private IProtoMonitor tm = ProtoMonitor.getInstance();
     private Drive dr = DriveImpl.getInstance();
-    private Display display = new Display(tm);
+    private Display display = new Display(tm, dr);
 
     public static void main(String[] args) {
         launch(args);
